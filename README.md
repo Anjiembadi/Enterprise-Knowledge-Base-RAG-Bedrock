@@ -125,6 +125,36 @@ rag_app/
 http://3.93.74.210:8501
 ```
 
+## 📸 Screenshots
+
+### 🔹 Leave Policy Query
+![Leave Policy](screenshots/leave_policy.png)
+
+---
+
+### 🔹 Reimbursement Policy Query
+![Reimbursement Policy](screenshots/reimbursement.png)
+
+---
+
+### 🔹 Working Hours (HR Policy)
+![Working Hours](screenshots/working_hours.png)
+
+---
+
+### 🔹 Multi-Document Summary
+![Summary](screenshots/summary.png)
+
+---
+
+### 🔹 No Data / Hallucination Control
+![No Data](screenshots/no_data.png)
+
+---
+
+### 🔹 Final Application Output (Streamlit UI)
+![Output](screenshots/output.png)
+
 ---
 
 ## 🧪 Sample Questions
