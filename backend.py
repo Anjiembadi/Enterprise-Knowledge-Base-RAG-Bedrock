@@ -1,6 +1,12 @@
 import boto3
+import streamlit as st
 
-client = boto3.client("bedrock-agent-runtime", region_name="us-east-1")
+client = boto3.client(
+    "bedrock-agent-runtime",
+    region_name=st.secrets["AWS_DEFAULT_REGION"],
+    aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
+    aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"]
+)
 
 KNOWLEDGE_BASE_ID = "P1O1GQ9CUT"
 MODEL_ARN = "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-lite-v1:0"
@@ -18,17 +24,17 @@ def get_answer(query):
             }
         )
 
-        
         answer = response["output"]["text"]
 
-        
         if "Response:" in answer:
             answer = answer.split("Response:")[-1].strip()
 
         if "Action:" in answer:
             answer = answer.split("Action:")[0].strip()
 
-        
+        if answer.startswith("According to the search results,"):
+            answer = answer.replace("According to the search results,", "", 1).strip()
+
         source_uris = []
         citations = response.get("citations", [])
 
