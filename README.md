@@ -124,9 +124,12 @@ rag_app/
 ```text
 http://3.93.74.210:8501
 ```
+---
 
 ## Note
 - ⚠️ Note: The EC2 instance may be stopped to save cost. Please contact me for live demo access.
+
+---
 
 ## 📸 Screenshots
 
