@@ -18,17 +18,17 @@ def get_answer(query):
             }
         )
 
-        # ✅ Get answer
+        
         answer = response["output"]["text"]
 
-        # 🔥 Clean unwanted debug text
+        
         if "Response:" in answer:
             answer = answer.split("Response:")[-1].strip()
 
         if "Action:" in answer:
             answer = answer.split("Action:")[0].strip()
 
-        # ✅ Extract sources
+        
         source_uris = []
         citations = response.get("citations", [])
 
