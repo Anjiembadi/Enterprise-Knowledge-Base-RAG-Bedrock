@@ -283,13 +283,6 @@ streamlit run app.py --server.port 8501 --server.address 0.0.0.0
 
 This project demonstrates a practical **enterprise RAG application** built using **Amazon Bedrock Knowledge Bases**. It combines semantic retrieval, grounded generation, cloud deployment, and citation-backed answers to solve real-world enterprise search problems.
 
-It successfully:
-
-* bridges the gap between LLMs and private enterprise data
-* provides accurate, context-aware answers
-* reduces hallucination risks
-* delivers a scalable cloud-based solution
-
 ---
 
 ## Author
