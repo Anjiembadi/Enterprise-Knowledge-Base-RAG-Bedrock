@@ -1,6 +1,6 @@
-# 📚 Enterprise Knowledge Base Q&A System Using Amazon Bedrock (RAG)
+# Enterprise Knowledge Base Q&A System using Amazon Bedrock Knowledge Bases (RAG)
 
-## 🚀 Project Overview
+## Project Overview
 
 This project implements an **Enterprise Knowledge Base Question-Answering System** using **Amazon Bedrock Knowledge Bases (RAG)**.
 
@@ -13,8 +13,17 @@ It combines:
 * **Cloud deployment on AWS**
 
 ---
+## Key Highlights
 
-## 🧠 Business Context
+- Built an end-to-end **RAG system** for enterprise document question answering
+- Used **Amazon Bedrock Knowledge Bases**, **Amazon S3**, **OpenSearch Serverless**, **EC2**, and **Streamlit**
+- Returned **citation-backed responses** for internal company documents
+- Designed to reduce hallucinations for unknown or unsupported queries
+- Deployed as a cloud-based application on **AWS EC2**
+
+---
+
+## Business Context
 
 Traditional enterprise search systems rely on keyword matching, which:
 
@@ -26,7 +35,9 @@ At the same time, LLMs:
 * can generate incorrect answers (hallucinations)
 * lack access to private company data
 
-### ✅ Solution
+---
+
+### Solution
 
 Amazon Bedrock Knowledge Bases solve both problems by:
 
@@ -35,7 +46,7 @@ Amazon Bedrock Knowledge Bases solve both problems by:
 
 ---
 
-## ❗ Problem Statement
+## Problem Statement
 
 Develop a production-ready **RAG (Retrieval-Augmented Generation)** system that:
 
@@ -45,7 +56,20 @@ Develop a production-ready **RAG (Retrieval-Augmented Generation)** system that:
 
 ---
 
-## 🏗️ Architecture
+## Workflow
+
+1. Upload enterprise documents to **Amazon S3**
+2. Connect the S3 data source to **Amazon Bedrock Knowledge Base**
+3. Store vector embeddings in **Amazon OpenSearch Serverless**
+4. Accept user questions through the **Streamlit interface**
+5. Send the query to **Amazon Bedrock Agent Runtime**
+6. Retrieve relevant document chunks from the knowledge base
+7. Generate a grounded response using retrieved context
+8. Return the final answer with **source citations**
+
+---
+
+## Architecture
 
 ```text
 User
@@ -65,7 +89,7 @@ Response with Citations
 
 ---
 
-## ☁️ AWS Services Used
+## AWS Services Used
 
 * **Amazon S3** → stores internal documents
 * **Amazon Bedrock Knowledge Base** → managed RAG system
@@ -75,16 +99,22 @@ Response with Citations
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-* Python 🐍
-* Streamlit
-* Boto3
-* AWS Bedrock APIs
+- Python
+- Streamlit
+- Boto3
+- Amazon Bedrock Knowledge Bases
+- Amazon S3
+- Amazon OpenSearch Serverless
+- Amazon EC2
+- AWS IAM
 
 ---
 
-## 📂 Project Structure
+
+
+## Project Structure
 
 ```text
 rag_app/
@@ -96,74 +126,83 @@ rag_app/
 
 ---
 
-## ✨ Features
+## Features
 
-### 🔍 Intelligent Search
+### Intelligent Search
 
 * Semantic understanding using embeddings
 * Context-aware responses
 
-### 📄 Citation-Based Answers
+### Citation-Based Answers
 
 * Displays source documents (S3 URIs)
 * Ensures transparency
 
-### 🧠 Hallucination Control
+### Hallucination Control
 
 * Returns safe responses when data is missing
 
-### ☁️ Cloud Deployment
+### Cloud Deployment
 
 * Fully deployed on AWS EC2
 * Accessible via browser
 
 ---
 
-## 🌐 Live Application
+## Sample Documents Used
 
-```text
+The knowledge base was tested using sample enterprise documents such as:
+
+- HR policy
+- Leave policy
+- Reimbursement policy
+
+These documents were stored in **Amazon S3** and used as the knowledge source for question answering.
+
+---
+
+## Live Demo
+
+Application URL:  
 http://3.93.74.210:8501
-```
----
 
-## Note
-- ⚠️ Note: The EC2 instance may be stopped to save cost. Please contact me for live demo access.
+> Note: The EC2 instance may be stopped to reduce cost, so the live demo may not always be available.
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
-### 🔹 Leave Policy Query
+### Leave Policy Query
 ![Leave Policy](screenshots/leave_policy.png)
 
 ---
 
-### 🔹 Reimbursement Policy Query
+### Reimbursement Policy Query
 ![Reimbursement Policy](screenshots/reimbursement.png)
 
 ---
 
-### 🔹 Working Hours (HR Policy)
+### Working Hours (HR Policy)
 ![Working Hours](screenshots/working_hours.png)
 
 ---
 
-### 🔹 Multi-Document Summary
+### Multi-Document Summary
 ![Summary](screenshots/summary.png)
 
 ---
 
-### 🔹 No Data / Hallucination Control
+### No Data / Hallucination Control
 ![No Data](screenshots/no_data.png)
 
 ---
 
-### 🔹 Final Application Output (Streamlit UI)
+### Final Application Output (Streamlit UI)
 ![Output](screenshots/output.png)
 
 ---
 
-## 🧪 Sample Questions
+## Sample Questions
 
 ```text
 What is leave policy?
@@ -175,18 +214,19 @@ What is work from home policy?
 
 ---
 
-## 📊 Results
+## Results
 
-* ✅ Accurate answers retrieved from internal documents
-* ✅ Multi-document summarization works
-* ✅ Unknown queries handled safely
-* ✅ Source citations provided
+- Successfully retrieved relevant answers from internal enterprise documents
+- Generated **citation-backed responses** using Amazon Bedrock Knowledge Bases
+- Supported **multi-document summarization**
+- Returned safe fallback responses for unsupported questions
+- Demonstrated a working **end-to-end enterprise RAG pipeline** on AWS
 
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
-### 🔹 Local Setup
+### Local Setup
 
 ```bash
 pip install -r requirements.txt
@@ -195,7 +235,7 @@ streamlit run app.py
 
 ---
 
-### 🔹 AWS Deployment (EC2)
+### AWS Deployment (EC2)
 
 1. Launch EC2 instance
 2. Connect via SSH
@@ -209,7 +249,7 @@ streamlit run app.py --server.port 8501 --server.address 0.0.0.0
 
 ---
 
-## 🔐 Security Considerations
+## Security Considerations
 
 * IAM-based access control
 * Private documents stored in S3
@@ -217,7 +257,18 @@ streamlit run app.py --server.port 8501 --server.address 0.0.0.0
 
 ---
 
-## 🚀 Future Enhancements
+
+## Challenges Faced
+
+- Configuring the knowledge base and vector store correctly
+- Handling permission issues related to **IAM** and **OpenSearch Serverless**
+- Ensuring the system returned **grounded answers with citations**
+- Managing deployment on **EC2** and securely configuring cloud access
+- Designing the application to handle unknown queries safely
+
+---
+
+## Future Enhancements
 
 * Add authentication (login system)
 * Use IAM roles instead of access keys
@@ -227,9 +278,10 @@ streamlit run app.py --server.port 8501 --server.address 0.0.0.0
 
 ---
 
-## 🎯 Conclusion
 
-This project demonstrates a complete **end-to-end RAG system** using Amazon Bedrock Knowledge Bases.
+## Conclusion
+
+This project demonstrates a practical **enterprise RAG application** built using **Amazon Bedrock Knowledge Bases**. It combines semantic retrieval, grounded generation, cloud deployment, and citation-backed answers to solve real-world enterprise search problems.
 
 It successfully:
 
@@ -240,12 +292,15 @@ It successfully:
 
 ---
 
-## 🙌 Author
+## Author
 
 **Embadi Anji**
 
+- GitHub: https://github.com/Anjiembadi
+- LinkedIn: https://www.linkedin.com/in/embadi-anji-31122531a
+
 ---
 
-## ⭐ Acknowledgement
+## Acknowledgements
 
 Built using AWS Bedrock and modern Generative AI concepts.
